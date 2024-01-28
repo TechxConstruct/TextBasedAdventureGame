@@ -1,24 +1,24 @@
-import game.path_finder as path_finder
+from game.path_finder import get_path
+from game.scene_enum import SceneEnum
 
-print("Welcome to my text based game called The Forest \n"
-      "In this game your objective is simply leave the forest. \n"
-      "Of course, it won't be that easy. You'll have to play the game to "
-      "find out why.\n"
-      "To advance the text on screen press enter.\n"
-      "To choose your path going forward, simply enter the selection by the "
-      "by the corresponding option.\n"
-      "With all that out of the way, good luck and have fun!\n")
+SCRIPT_PATH = "game/levels/scripts"
 
 has_game_ended = False
-choices = ["0:0"]
 
-while not has_game_ended:
-    next_path = path_finder.find_path(choices)
 
-    if next_path is None:
-        has_game_ended = True
+def start_the_game():
+    with open(f"{SCRIPT_PATH}/intro.txt", "r") as script:
+        print(script.read())
+        print("----------------------------------\n")
+    script.close()
 
-    choices.append(next_path)
-    input("Press enter to continue or [q + enter] to quit")
 
-print("Thanks for playing!")
+if __name__ == "__main__":
+    start_the_game()
+
+    next_scene = SceneEnum.THE_BEGINNING.value
+
+    while True:
+        next_scene = get_path(next_scene)
+
+    # print("Thanks for playing!")

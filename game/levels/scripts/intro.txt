@@ -1,0 +1,7 @@
+Welcome to my text based game called The Forest 
+In this game your objective is simply leave the forest. 
+Of course, it won't be that easy. You'll have to play the game to 
+find out why.
+To advance the text on screen, press enter.
+To choose your path going forward, simply enter the selection by the corresponding option.
+With all that out of the way, good luck and have fun!

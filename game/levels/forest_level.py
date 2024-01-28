@@ -3,48 +3,65 @@ File: ForestLevel.py
 
 This file represents the forest level of our text based adventure game.
 """
+from game.scene_enum import SceneEnum
 
-import keyboard
+SCRIPT_PATH = "game/levels/scripts"
 
 
 def the_beginning():
-    text_list = [
-        "You awaken lying on the ground.",
-        "It's soft.",
-        "Your mind feels hazy",
-        "You find it hard to concentrate on any particular thought.",
-        "Your vision is slow to adjust, but you make out the scene before you.",
-        "Your eyes adjust to see the full moon and the stars.",
-        "Your mind is clearing up now.",
-        "The moon looks closer than it should.",
-        "The glow of the moon isn't quite right either.",
-        "You look around and notice you're in a forest clearing",
-        "The forest doesn't look familiar.",
-        "It's quiet."
-    ]
-    # print("You awaken lying on the ground.\n"
-    #       "It's soft.\n"
-    #       "Your mind feels hazy\n"
-    #       "You find it hard to concentrate on any particular thought.\n"
-    #       "Your vision is slow to adjust, but you make out the scene before you.\n"
-    #       "Your eyes adjust to see the full moon and the stars.\n"
-    #       "Your mind is clearing up now.\n"
-    #       "The moon looks closer than it should.\n"
-    #       "The glow of the moon isn't quite right either.\n"
-    #       "You look around you to notice your in a clearing in the forest.\n"
-    #       "They don't look familiar.\n"
-    #       "It's quiet.\n"
-    #       )
+    with open(f"{SCRIPT_PATH}/{SceneEnum.THE_BEGINNING.value}.txt", "r") as script:
+        for line in script:
+            print(line.rstrip("\n"))
+            input()
 
-    for text in text_list:
-        print(text)
-        input("")
+    script.close()
 
-    choice = input("1 > Stare at the sky\n2 > Get up\n3 > Listen closely\n4 > Quit Game(close game)\n")
+    prompt = "1 > Stare at the sky\n2 > Get up\n3 > Listen closely\n4 > Quit Game(close game)\n"
+    choice = input(prompt)
 
+    while choice == "" or choice.isalpha():
+        print("invalid option detected")
+        choice = input(prompt)
+
+    next_scene = None
+
+    if choice == "1":
+        next_scene = SceneEnum.FOREST_STARE_SKY.value
+    if choice == "2":
+        next_scene = SceneEnum.FOREST_EXPLORER.value
+    if choice == "3":
+        next_scene = SceneEnum.FOREST_LISTENER.value
     if choice == "4":
         exit(0)
 
-    return choice
+    return next_scene
 
 
+def stare_at_sky_scene():
+    with open(f"{SCRIPT_PATH}/{SceneEnum.FOREST_STARE_SKY.value}.txt", "r") as script:
+        for line in script:
+            print(line.rstrip("\n"))
+            input("")
+
+    script.close()
+
+    prompt = "1 > Succumb to the pain\n"\
+             "2 > Try to block out the pain\n"\
+             "3 > Quit\n"
+
+    choice = input(prompt)
+    while choice == "" or choice.isalpha():
+        print("invalid option detected")
+        choice = input(prompt)
+
+    next_scene = None
+
+    if choice == "1":
+        next_scene = SceneEnum.MOON_HAZE.value
+    elif choice == "2":
+        # maybe do some hidden path
+        pass
+    else:
+        exit(0)
+
+    return next_scene

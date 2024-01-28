@@ -1,14 +1,15 @@
-# import levels.forest_level as forest_level
-# import levels.moon_level as moon_level
 from game.levels import forest_level
+from game.levels import moon_level
+from game.scene_enum import SceneEnum
 
 
-def find_path(choices: [str]):
-    last_index = len(choices) - 1
-    last_choice = choices[last_index]
+def get_path(next_scene: str):
 
-    if last_choice == "0:0":
-        path = forest_level.the_beginning()
-        return f"0:{path}"
-    # if last_choice is "0:1":
+    if next_scene == SceneEnum.THE_BEGINNING.value:
+        return forest_level.the_beginning()
 
+    if next_scene == SceneEnum.FOREST_STARE_SKY.value:
+        return forest_level.stare_at_sky_scene()
+
+    if next_scene == SceneEnum.MOON_HAZE.value:
+        return moon_level.the_haze()
