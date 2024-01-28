@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     next_scene = SceneEnum.THE_BEGINNING.value
 
-    while True:
+    while next_scene is not None:
         next_scene = get_path(next_scene)
 
-    # print("Thanks for playing!")
+    print("Thanks for playing!")

@@ -16,11 +16,15 @@ def the_beginning():
 
     script.close()
 
-    prompt = "1 > Stare at the sky\n2 > Get up\n3 > Listen closely\n4 > Quit Game(close game)\n"
+    prompt = ("1 > Stare at the sky\n"
+              "2 > Get up\n"
+              "3 > Listen closely\n"
+              "4 > Quit Game(close game)\n")
+
     choice = input(prompt)
 
     while choice == "" or choice.isalpha():
-        print("invalid option detected")
+        print("Invalid choice. Try again.")
         choice = input(prompt)
 
     next_scene = None
@@ -45,13 +49,13 @@ def stare_at_sky_scene():
 
     script.close()
 
-    prompt = "1 > Succumb to the pain\n"\
-             "2 > Try to block out the pain\n"\
-             "3 > Quit\n"
+    prompt = ("1 > Succumb to the pain\n"
+              "2 > Try to block out the pain\n"
+              "3 > Quit\n")
 
     choice = input(prompt)
     while choice == "" or choice.isalpha():
-        print("invalid option detected")
+        print("Invalid choice. Try again.")
         choice = input(prompt)
 
     next_scene = None
@@ -60,8 +64,8 @@ def stare_at_sky_scene():
         next_scene = SceneEnum.MOON_HAZE.value
     elif choice == "2":
         # maybe do some hidden path
-        pass
-    else:
+        next_scene = SceneEnum
+    elif choice == "3":
         exit(0)
 
     return next_scene
