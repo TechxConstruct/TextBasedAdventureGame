@@ -14,3 +14,6 @@ def the_haze():
         for line in script:
             print(f"> {line}")
             input("")
+
+
+    exit(0)
