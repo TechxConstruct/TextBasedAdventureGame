@@ -38,6 +38,7 @@ def the_haze():
 
     return next_scene
 
+
 def the_cave():
     with open(f"{SCRIPT_PATH}/{SceneEnum.MOON_THE_CAVE}.txt") as script:
         for line in script:

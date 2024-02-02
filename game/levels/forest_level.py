@@ -4,6 +4,7 @@ File: ForestLevel.py
 This file represents the forest level of our text based adventure game.
 """
 from game.scene_enum import SceneEnum
+import game.scene_utils as utils
 
 SCRIPT_PATH = "game/levels/scripts"
 
@@ -27,16 +28,18 @@ def the_beginning():
         print("Invalid choice. Try again.")
         choice = input(prompt)
 
-    next_scene = None
-
-    if choice == "1":
-        next_scene = SceneEnum.FOREST_STARE_SKY.value
-    if choice == "2":
-        next_scene = SceneEnum.FOREST_EXPLORER.value
-    if choice == "3":
-        next_scene = SceneEnum.FOREST_LISTENER.value
-    if choice == "4":
-        exit(0)
+    match choice:
+        case "1":
+            next_scene = SceneEnum.FOREST_STARE_SKY.value
+        case "2":
+            next_scene = SceneEnum.FOREST_EXPLORER.value
+        case "3":
+            next_scene = SceneEnum.FOREST_LISTENER.value
+        case "4":
+            exit(0)
+        case _:
+            print("Invalid option")
+            exit(0)
 
     return next_scene
 
@@ -58,14 +61,17 @@ def stare_at_sky_scene():
         print("Invalid choice. Try again.")
         choice = input(prompt)
 
-    next_scene = None
-
-    if choice == "1":
-        next_scene = SceneEnum.MOON_HAZE.value
-    elif choice == "2":
-        # maybe do some hidden path
-        next_scene = SceneEnum
-    elif choice == "3":
-        exit(0)
+    match choice:
+        case "1":
+            next_scene = SceneEnum.MOON_HAZE.value
+        case "2":
+            # maybe do some hidden path
+            print("To be continued...")
+            next_scene = None
+        case "3":
+            exit(0)
+        case _:
+            print("Invalid option")
+            exit(0)
 
     return next_scene
