@@ -1,51 +1,40 @@
 """
-File: forest_level.py
+File: moon_level.py
 
 This file represents the moon level of our text based adventure game.
 """
 
 from game.scene_enum import SceneEnum
-
-SCRIPT_PATH = "game/levels/scripts"
+import game.scene_utils as utils
 
 
 def the_haze():
-    with open(f"{SCRIPT_PATH}/{SceneEnum.MOON_HAZE.value}.txt") as script:
-        for line in script:
-            print(line.rstrip("\n"))
-            input("")
-
-    script.close()
+    utils.play_scene(SceneEnum.MOON_HAZE.value)
 
     prompt = ("1 > Run\n"
               "2 > Wait for the figures arrival\n"
               "3 > Quit Game\n")
 
-    choice = input(prompt)
+    choice = utils.get_user_choice(prompt)
 
-    while choice == "" or choice.isalpha():
-        print("Invalid choice. Try again.")
-        choice = input(prompt)
-
-    next_scene = None
-
-    if choice == "1":
-        next_scene = SceneEnum
-    elif choice == "2":
-        print("To be continued")
-    elif choice == "3":
-        exit(0)
+    match choice:
+        case "1":
+            print("To be continued")
+            next_scene = None
+        case "2":
+            print("To be continued")
+            next_scene = None
+        case "3":
+            exit(0)
+        case _:
+            print("Invalid option")
+            exit(0)
 
     return next_scene
 
 
 def the_cave():
-    with open(f"{SCRIPT_PATH}/{SceneEnum.MOON_THE_CAVE}.txt") as script:
-        for line in script:
-            print(line.rstrip("\n"))
-            input("")
-
-    script.close()
+    utils.play_scene(SceneEnum.MOON_THE_CAVE.value)
 
     next_scene = None
 

@@ -1,32 +1,21 @@
 """
-File: ForestLevel.py
+File: forest_level.py
 
 This file represents the forest level of our text based adventure game.
 """
 from game.scene_enum import SceneEnum
 import game.scene_utils as utils
 
-SCRIPT_PATH = "game/levels/scripts"
-
 
 def the_beginning():
-    with open(f"{SCRIPT_PATH}/{SceneEnum.THE_BEGINNING.value}.txt", "r") as script:
-        for line in script:
-            print(line.rstrip("\n"))
-            input()
-
-    script.close()
+    utils.play_scene(SceneEnum.THE_BEGINNING.value)
 
     prompt = ("1 > Stare at the sky\n"
               "2 > Get up\n"
               "3 > Listen closely\n"
               "4 > Quit Game(close game)\n")
 
-    choice = input(prompt)
-
-    while choice == "" or choice.isalpha():
-        print("Invalid choice. Try again.")
-        choice = input(prompt)
+    choice = utils.get_user_choice(prompt)
 
     match choice:
         case "1":
@@ -45,21 +34,13 @@ def the_beginning():
 
 
 def stare_at_sky_scene():
-    with open(f"{SCRIPT_PATH}/{SceneEnum.FOREST_STARE_SKY.value}.txt", "r") as script:
-        for line in script:
-            print(line.rstrip("\n"))
-            input("")
-
-    script.close()
+    utils.play_scene(SceneEnum.FOREST_STARE_SKY.value)
 
     prompt = ("1 > Succumb to the pain\n"
               "2 > Try to block out the pain\n"
               "3 > Quit\n")
 
-    choice = input(prompt)
-    while choice == "" or choice.isalpha():
-        print("Invalid choice. Try again.")
-        choice = input(prompt)
+    choice = utils.get_user_choice(prompt)
 
     match choice:
         case "1":
